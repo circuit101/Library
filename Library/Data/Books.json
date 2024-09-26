@@ -1,0 +1,16 @@
+{
+    "ISBN": 8765,
+    "title": "title",
+    "publication_date": "date",
+    "availability": true,
+    "authors": [
+        {
+            "first_name": "name",
+            "last_name": "name",
+            "nationality": "natio",
+            "books": [
+                "title"
+            ]
+        }
+    ]
+}
