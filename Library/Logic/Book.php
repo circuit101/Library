@@ -34,7 +34,20 @@
         public function get_availability(): bool {
             return $this->availability;
         }
-    }
+        //Delete
+        public function delete_book($filename){
+            $books_json = file_get_contents($filename);
+            $books_array = json_decode($books_json, true);
+
+        // Find the book to delete by ISBN and remove it
+        $books_array = array_filter($books_array, function($book) {
+            return $book['ISBN'] !== $this->ISBN; // Remove book with this ISBN
+        });
+
+        // Save the updated books array back to the JSON file
+        file_put_contents($filename, json_encode(array_values($books_array), JSON_PRETTY_PRINT));
+        }
+    };
 
     class Author{
         //Properties
@@ -96,3 +109,5 @@
     echo $book_data;
 
     file_put_contents("../Data/Books.json",$book_data);
+
+    $book_data->delete_book("../Data/Books.json");
